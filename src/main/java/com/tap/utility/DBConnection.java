@@ -5,9 +5,10 @@ import java.sql.SQLException;
 import java.sql.Connection;
 
 public class DBConnection {
-	private static final String URL = "jdbc:mysql://localhost:3306/instantfood4";
-	private static final String USERNAME = "root";
-	private static final String PASSWORD = "MYmysql@#$12124";
+	private static final String URL =
+	"jdbc:mysql://gateway01.ap-southeast-1.prod.aws.tidbcloud.com:4000/instantfood4?useSSL=true&requireSSL=true";
+	private static final String USERNAME = "3ow8ciTqi8w4CZQ.root";
+	private static final String PASSWORD = "4FfpVNKm7foVxj8q";
 	static Connection con = null;
 	
 	public static Connection getConnection() {
