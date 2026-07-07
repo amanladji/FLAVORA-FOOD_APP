@@ -8,6 +8,6 @@ public interface RestaurantDAO {
 	void addRestaurant(Restaurant r);
 	void updateRestaurant(Restaurant r);
 	void removeRestaurant(int restaurantId);
-	Restaurant getUser(int restaurantId);
+	Restaurant getRestaurant(int restaurantId);
 	List<Restaurant> getAll();
 }

@@ -37,7 +37,12 @@ public class loginServet extends HttpServlet{
 		
 		if(isValid) {
 			session.setAttribute("user", user);
-			resp.sendRedirect("restaurantServlet");
+			if(user.getRole().equals("admin")) {
+				resp.sendRedirect("admin/dashBoard.jsp");
+			}else {
+				resp.sendRedirect("restaurantServlet");
+			}
+			
 		}else {
 			RequestDispatcher rd = req.getRequestDispatcher("login.html");
 			rd.forward(req, resp);

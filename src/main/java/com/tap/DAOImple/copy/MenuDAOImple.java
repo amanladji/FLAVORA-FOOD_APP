@@ -16,8 +16,8 @@ import java.sql.Timestamp;
 
 public class MenuDAOImple implements MenuDAO{
 	private static final String INSERT_QUERY = "insert into menu"
-			+ "(restaurantId, itemName, description, price, isAvailable, category, createdAt, updatedAt, deleteAt) values(?,?,?,?,?,?,?,?,?)";
-	private static final String UPDATED_QUERY = "update menu set restaurantId = ?, itemName = ?, description = ?, price = ?, isAvailable = ?, category = ?, updatedAt = ? where menuId = ?";
+			+ "(restaurantId, itemName, description, price, isAvailable, category, createdAt, images) values(?,?,?,?,?,?,?,?)";
+	private static final String UPDATED_QUERY = "update menu set itemName = ?, description = ?, price = ?, isAvailable = ?, category = ?, updatedAt = ?, images = ? where menuId = ?";
 	private static final String DELETE_QUERY = "delete from menu where menuId = ?";
 	private static final String SELECT_QUERY02 = "select * from menu";
 	private static final String SELECT_QUERY01 = "select * from menu where restaurantId = ?";
@@ -36,8 +36,7 @@ public class MenuDAOImple implements MenuDAO{
 			pstmt.setInt(5, m.getIsAvailable());
 			pstmt.setString(6, m.getCategory());
 			pstmt.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
-			pstmt.setTimestamp(8, m.getUpdatedAt());
-			pstmt.setTimestamp(9, m.getDeleteAt());
+			pstmt.setString(8, m.getImages());
 			
 			int row = pstmt.executeUpdate();
 			System.out.println(row);
@@ -53,13 +52,13 @@ public class MenuDAOImple implements MenuDAO{
 		
 		try {
 			PreparedStatement pstmt = con.prepareStatement(UPDATED_QUERY);
-			pstmt.setInt(1, m.getRestaurantId());
-			pstmt.setString(2, m.getItemName());
-			pstmt.setString(3, m.getDescription());
-			pstmt.setDouble(4, m.getPrice());
-			pstmt.setInt(5, m.getIsAvailable());
-			pstmt.setString(6, m.getCategory());
-			pstmt.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
+			pstmt.setString(1, m.getItemName());
+			pstmt.setString(2, m.getDescription());
+			pstmt.setDouble(3, m.getPrice());
+			pstmt.setInt(4, m.getIsAvailable());
+			pstmt.setString(5, m.getCategory());
+			pstmt.setTimestamp(6, new Timestamp(System.currentTimeMillis()));
+			pstmt.setString(7, m.getImages());
 			pstmt.setInt(8, m.getMenuId());
 			
 			int row = pstmt.executeUpdate();

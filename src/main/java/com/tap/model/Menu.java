@@ -17,7 +17,7 @@ public class Menu {
 	
 	
 	public Menu(int restaurantId, String itemName, String description, double price, int isAvailable, String category,
-			Timestamp createdAt, Timestamp updatedAt, Timestamp deleteAt, String images) {
+		 String images) {
 		super();
 		this.restaurantId = restaurantId;
 		this.itemName = itemName;
@@ -25,11 +25,24 @@ public class Menu {
 		this.price = price;
 		this.isAvailable = isAvailable;
 		this.category = category;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
-		this.deleteAt = deleteAt;
 		this.images = images;
 	}
+	
+	
+
+
+	public Menu(String itemName, String description, double price, int isAvailable, String category,
+			String images, int menuId) {
+		super();
+		this.menuId = menuId;
+		this.itemName = itemName;
+		this.description = description;
+		this.price = price;
+		this.isAvailable = isAvailable;
+		this.category = category;
+		this.images = images;
+	}
+
 
 
 	public Menu(int menuId, int restaurantId, String itemName, String description, double price, int isAvailable,

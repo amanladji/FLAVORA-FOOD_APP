@@ -191,6 +191,7 @@ if(restaurantList != null){
 <%@ page import="java.util.List" %>
 <%@ page import="com.tap.DAOImple.copy.RestaurantDAOImple" %>
 <%@ page import="com.tap.model.Restaurant" %>
+<%@ page import="com.tap.model.User" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1282,6 +1283,7 @@ a { text-decoration: none; color: inherit; }
   border-color: var(--gold);
 }
 
+
 /* ─── RESPONSIVE ─── */
 @media (max-width: 900px) {
   .hero-center { grid-template-columns: 1fr; text-align: center; gap: 20px; }
@@ -1336,6 +1338,14 @@ a { text-decoration: none; color: inherit; }
     <a href="cart.jsp"                class="btnn">Cart</a>
     <a href="register.html"           class="btnn">Sign Up</a>
     <a href="login.html"              class="btnn primary">Login</a>
+    <a href="admin/adminLogin.html"	  class="btnn primary">Admin Login</a>
+   	<%User user = (User)session.getAttribute("user");%>
+   	<div class="btnn primary" onclick="toggleMenu()">
+   		👤<%=user != null? user.getUserName():"User" %>
+   	</div> 
+   	 <ul>
+   		<li><a class="btnn" href="<%=request.getContextPath()%>/callLogoutServlet" >Logout</a></li>
+   	</ul> 	
   </div>
 </nav>
 
@@ -1486,7 +1496,7 @@ if(restaurantList != null){
     </p>
     <div class="card-status">
       <span class="status-dot"></span>
-      <span><%= r.getIsActive() %></span>
+      <span><%= r.getIsActive()== 1 ? "Available":"Not Available" %></span>
     </div>
     <a href="callMenuServlet?restaurantId=<%= r.getRestaurantId() %>" class="card-btn">
       <span>View Restaurant</span>
@@ -1583,7 +1593,7 @@ if(restaurantList != null){
       <span><em>fine food delivery</em></span>
     </div>
     <div style="text-align:right;">
-      <p class="footer-copy" style="margin-bottom:16px;">© 2025 Flavora. All rights reserved.</p>
+      <p class="footer-copy" style="margin-bottom:16px;">© 2026 Flavora. All rights reserved.</p>
       <a href="#hero" class="footer-top-link">Back to top ↑</a>
     </div>
   </div>
@@ -1783,4 +1793,16 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 </script>
 
 </body>
-</html>
+</html> 
+
+
+
+
+
+
+
+
+
+
+
+

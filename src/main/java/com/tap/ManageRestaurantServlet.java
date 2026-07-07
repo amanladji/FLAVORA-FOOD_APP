@@ -1,5 +1,6 @@
 package com.tap;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -11,22 +12,22 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import jakarta.servlet.annotation.WebServlet;
 
-@WebServlet("/restaurantServlet")
-public class RestaurantServlet extends HttpServlet{
+@WebServlet("/callManageRestaurantServlet")
+public class ManageRestaurantServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RestaurantDAOImple rdao = new RestaurantDAOImple();
 		
-		List<Restaurant> restaurantList = rdao.getAll();
-		
-		req.setAttribute("restaurantList", restaurantList);
-		
-		
-		RequestDispatcher rd = req.getRequestDispatcher("restaurant.jsp");
-		rd.forward(req, resp);
-		
+			RestaurantDAOImple rdao = new RestaurantDAOImple();
+			
+			List<Restaurant> restaurantList = rdao.getAll();
+			
+			req.setAttribute("restaurantList", restaurantList);
+			
+			
+			RequestDispatcher rd = req.getRequestDispatcher("admin/manageRestaurants.jsp");
+			rd.forward(req, resp);
 	}
-
 }

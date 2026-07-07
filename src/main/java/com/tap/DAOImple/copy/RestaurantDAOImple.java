@@ -14,9 +14,9 @@ import com.tap.DAO.RestaurantDAO;
 
 public class RestaurantDAOImple implements RestaurantDAO{
 	private static final String INSERT_QUERY = "insert into restaurant"
-			+ "(name, cuisineType, deliveryTime, address, adminUserId, rating, isActive) values(?,?,?,?,?,?,?)";
+			+ "(name, cuisineType, deliveryTime, address, adminUserId, rating, isActive, images) values(?,?,?,?,?,?,?,?)";
 	
-	private static final String UPDATE_QUERY = "update restaurant set name = ?, cuisineType = ?, deliveryTime = ?, address = ?, adminUserId = ?, rating = ?, isActive = ? where restaurantId = ?";
+	private static final String UPDATE_QUERY = "update restaurant set name = ?, cuisineType = ?, deliveryTime = ?, address = ?, adminUserId = ?, rating = ?, isActive = ?, images = ? where restaurantId = ?";
 	private static final String DELETE_QUERY = "delete from restaurant where restaurantId = ?";
 	private static final String SELECT_QUERY01 = "select * from restaurant where restaurantId = ?";
 
@@ -35,6 +35,7 @@ public class RestaurantDAOImple implements RestaurantDAO{
 			pstmt.setInt(5, r.getAdminUserId());
 			pstmt.setDouble(6, r.getRating());
 			pstmt.setInt(7, r.getIsActive());
+			pstmt.setString(8, r.getImages());
 			
 			int row = pstmt.executeUpdate();
 			System.out.println(row);
@@ -58,7 +59,8 @@ public class RestaurantDAOImple implements RestaurantDAO{
 			pstmt.setInt(5, r.getAdminUserId());
 			pstmt.setDouble(6, r.getRating());
 			pstmt.setInt(7, r.getIsActive());
-			pstmt.setInt(8, r.getRestaurantId());
+			pstmt.setString(8, r.getImages());
+			pstmt.setInt(9, r.getRestaurantId());
 			
 			int row = pstmt.executeUpdate();
 			System.out.println(row);
@@ -85,7 +87,7 @@ public class RestaurantDAOImple implements RestaurantDAO{
 	}
 	
 	@Override
-	public Restaurant getUser(int restaurantId) {
+	public Restaurant getRestaurant(int restaurantId) {
 		Connection con = DBConnection.getConnection();
 		Restaurant r = null;
 		try {

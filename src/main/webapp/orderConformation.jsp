@@ -498,7 +498,7 @@ a { text-decoration: none; color: inherit; }
       FLAVORA
       <span><em>fine food delivery</em></span>
     </div>
-    <p class="footer-copy">© 2025 Flavora. All rights reserved.</p>
+    <p class="footer-copy">© 2026 Flavora. All rights reserved.</p>
   </div>
 </footer>
 

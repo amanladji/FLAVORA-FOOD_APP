@@ -671,7 +671,7 @@ a { text-decoration: none; color: inherit; }
       <span><em>fine food delivery</em></span>
     </div>
     <div style="text-align:right;">
-      <p class="footer-copy" style="margin-bottom:16px;">© 2025 Flavora. All rights reserved.</p>
+      <p class="footer-copy" style="margin-bottom:16px;">© 2026 Flavora. All rights reserved.</p>
       <a href="#" class="footer-top-link">Back to top ↑</a>
     </div>
   </div>
