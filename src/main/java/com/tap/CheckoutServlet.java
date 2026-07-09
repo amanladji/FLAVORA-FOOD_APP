@@ -24,6 +24,9 @@ public class CheckoutServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
+		String paymentMethod = req.getParameter("paymentMethod");
+
+		String razorpayPaymentId = req.getParameter("razorpayPaymentId");
 		User user = (User)session.getAttribute("user");
 		Cart cart = (Cart)session.getAttribute("cart");
 		int restaurantId = (Integer)session.getAttribute("oldRestaurantId");
@@ -41,25 +44,63 @@ public class CheckoutServlet extends HttpServlet{
 			order.setUserId(user.getUserId());
 			order.setRestaurentId(restaurantId);
 			order.setOrderDate(new Timestamp(System.currentTimeMillis()));
-			order.setPaymentMethod(req.getParameter("paymentMethod"));
-			order.setStatus("pending");
+			order.setPaymentMethod(paymentMethod);
+			if (paymentMethod.equals("cash")) {
+			    order.setStatus("pending");
+			} else {
+			    order.setStatus("pending");
+			}
 			order.setTotalAmount(finalAmount);
+			
+			
+			
+			if(!paymentMethod.equals("cash") &&
+					   razorpayPaymentId == null){
+
+					    resp.sendRedirect("checkout.jsp");
+
+					    return;
+
+					}
 			
 			OrderDAOImple odao = new OrderDAOImple();
 			int orderId = odao.addOrder(order);
-			
-			OrderItem orderItem = new OrderItem();
-			orderItem.setOrderId(orderId);
-			System.out.println("orderId: " + orderId);
-			
-			for(CartItems item: cart.getItems().values()) {
-				orderItem.setMenuId(item.getMenuId());
-				orderItem.setQuantity(item.getQuantity());
-				orderItem.setItemTotal(item.getTotalPrice());
+			if (orderId <= 0) {
+			    System.out.println("Order insertion failed.");
+			    resp.sendRedirect("checkout.jsp");
+			    return;
 			}
+//			--old---
+//			OrderItem orderItem = new OrderItem();
+//			orderItem.setOrderId(orderId);
+//			System.out.println("orderId: " + orderId);
+//			
+//			for(CartItems item: cart.getItems().values()) {
+//				orderItem.setMenuId(item.getMenuId());
+//				orderItem.setQuantity(item.getQuantity());
+//				orderItem.setItemTotal(item.getTotalPrice());
+//			}
+//			
+//			OrderItemDAOImple oidao = new OrderItemDAOImple();
+//			oidao.addItem(orderItem);
 			
+			//----new with fixed big
 			OrderItemDAOImple oidao = new OrderItemDAOImple();
-			oidao.addItem(orderItem);
+
+			System.out.println("orderId: " + orderId);
+
+			for (CartItems item : cart.getItems().values()) {
+
+			    OrderItem orderItem = new OrderItem();
+
+			    orderItem.setOrderId(orderId);
+			    orderItem.setMenuId(item.getMenuId());
+			    orderItem.setQuantity(item.getQuantity());
+			    orderItem.setItemTotal(item.getTotalPrice());
+
+			    oidao.addItem(orderItem);
+			}
+			//--new 
 			
 			session.removeAttribute("cart");
 			session.removeAttribute("restaurantId");

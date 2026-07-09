@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" type="image/png"
+      href="${pageContext.request.contextPath}/assets/favicon.png">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>

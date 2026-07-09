@@ -1,151 +1,9 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<style>
-
-	*{
-    	margin:0;
-    	padding:0;
-    	box-sizing:border-box;
-    	font-family:Arial, sans-serif;
-	}
-
-	body{
-		display: flex;
-		justify-content: center;
-		align-items:center;
-		height:100vh;
-    	background-color:#f5f5f5;
-	}
-	
-	.form{
-		width: 400px;
-		padding: 20px;
-		border: 1px, solid, black;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap:10px;
-		box-shadow: 0 0 10px gray;
-	}
-	
-	.form h2{
-		text-align: center;
-		margin-bottom: 10px;
-		color: #333;	
-	}
-	
-	.input-group{
-		margin-right: 100px;
-		margin-bottom: 15px;
-	}
-	
-	label{
-    	display:block;
-    	margin-bottom:5px;
-    	font-weight:bold;
-    	color:#555;
-	}
-	
-	input, select{
-		width:150%;
-    	padding:12px;
-    	border: 1px solid #ccc;
-    	border-radius: 8px;
-    	font-size: 14px;
-	}
-	
-	input:focus,
-	select:focus{
-		outline: none;
-		border-color:#667eea;
-		box-shadow:0 0 5px rgba(102,126,234,0.5);
-	}
-	
-	button{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:8px;
-    background:#667eea;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
-    transition:0.3s;
-}
-button:hover{
-    background:#5563d6;
-}
-
-</style>
-<body>
-	<form action="callRegister" method="post" >
-		<div class = "form">
-			<h2>Register</h2>
-			
-			<div class="input-group">
-				<label>UserName : </label>
-				<input type= "text" name = userName><br>
-			</div>
-			
-			<div class="input-group">
-				<label>email : </label>
-				<input type= "email" name = email><br>
-			</div>
-			
-			<div class="input-group">
-				<label>password : </label>
-				<input type= "password" name = password><br>
-			</div>
-			
-			<div class="input-group">
-				<label>address : </label>
-				<input type="text" name = address><br>
-			</div>
-			
-			<div class="input-group">
-				<label>role : </label>
-				<select name = "role">
-				<option value="">--Choose Role--</option>
-				<option value="admin" >admin</option>
-				<option value="customer">customer</option>
-				</select><br>
-			</div>
-			
-			<button type="submit">submit</button>
-		</div>
-	</form>
-</body>
-</html> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" type="image/png"
+      href="${pageContext.request.contextPath}/assets/favicon.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Register — Flavora</title>
@@ -744,14 +602,7 @@ a { text-decoration: none; color: inherit; }
         <input type="text" name="address" placeholder="Your delivery address" required>
       </div>
 
-      <div class="input-group scroll-3d delay-5">
-        <label>Role</label>
-        <select name="role">
-          <option value="">--Choose Role--</option>
-          <option value="admin">admin</option>
-          <option value="customer">customer</option>
-        </select>
-      </div>
+      <input type="hidden" name="role" value="customer">
 
       <button type="submit" class="submit-btn scroll-3d delay-5" id="submitBtn">
         <span class="btn-text">Create Account</span>

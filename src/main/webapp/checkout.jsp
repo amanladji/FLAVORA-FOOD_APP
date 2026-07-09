@@ -1,442 +1,3 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
-<%@ page import="com.tap.model.Cart,com.tap.model.CartItems" %>
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Checkout</title>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
-}
-
-body{
-    background:#f5f5f5;
-    padding:40px;
-}
-
-.checkout-wrapper{
-    width:90%;
-    max-width:1200px;
-    margin:auto;
-    display:flex;
-    gap:30px;
-    align-items:flex-start;
-}
-
-.checkout-box{
-    flex:2;
-    background:white;
-    padding:30px;
-    border-radius:12px;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
-}
-
-.summary-box{
-    flex:1;
-    background:white;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
-    position:sticky;
-    top:20px;
-}
-
-.section-title{
-    margin-bottom:25px;
-    color:#333;
-    border-bottom:2px solid #ff6b35;
-    padding-bottom:10px;
-}
-
-.form-group{
-    margin-bottom:20px;
-}
-
-label{
-    display:block;
-    margin-bottom:8px;
-    font-weight:bold;
-    color:#444;
-}
-
-input,
-textarea,
-select{
-    width:100%;
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    outline:none;
-    font-size:15px;
-    transition:.3s;
-}
-
-input:focus,
-textarea:focus,
-select:focus{
-    border-color:#ff6b35;
-}
-
-textarea{
-    resize:none;
-    height:120px;
-}
-
-.summary-item{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:12px 0;
-    border-bottom:1px solid #eee;
-}
-
-.item-name{
-    flex:2;
-    font-weight:bold;
-}
-
-.item-qty{
-    flex:1;
-    text-align:center;
-}
-
-.item-total{
-    flex:1;
-    text-align:right;
-    color:#ff6b35;
-    font-weight:bold;
-}
-
-.bill-details{
-    margin-top:20px;
-}
-
-.bill-row{
-    display:flex;
-    justify-content:space-between;
-    margin:12px 0;
-    font-size:16px;
-}
-
-.bill-row:last-child{
-    border-top:2px dashed #ccc;
-    padding-top:15px;
-    margin-top:20px;
-    font-size:20px;
-    font-weight:bold;
-}
-
-.place-order-btn{
-    width:100%;
-    margin-top:25px;
-    padding:14px;
-    background:#28a745;
-    color:white;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:17px;
-    transition:.3s;
-}
-
-.place-order-btn:hover{
-    background:#218838;
-}
-
-.back-cart-btn{
-    display:block;
-    text-align:center;
-    margin-top:15px;
-    text-decoration:none;
-    background:#ff6b35;
-    color:white;
-    padding:12px;
-    border-radius:8px;
-    transition:.3s;
-}
-
-.back-cart-btn:hover{
-    background:#e85b2d;
-}
-
-.empty-checkout{
-    width:500px;
-    margin:120px auto;
-    background:white;
-    padding:40px;
-    border-radius:12px;
-    text-align:center;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
-}
-
-.empty-checkout h2{
-    margin-bottom:15px;
-}
-
-.empty-checkout p{
-    margin-bottom:25px;
-    color:#666;
-}
-
-.browse-btn{
-    text-decoration:none;
-    display:inline-block;
-    padding:12px 25px;
-    background:#ff6b35;
-    color:white;
-    border-radius:8px;
-    transition:.3s;
-}
-
-.browse-btn:hover{
-    background:#e85b2d;
-}
-
-@media(max-width:900px){
-
-.checkout-wrapper{
-    flex-direction:column;
-}
-
-.summary-box{
-    width:100%;
-    position:static;
-}
-
-}
-
-</style>
-
-</head>
-<body>
-
-<%
-
-Cart cart=(Cart)session.getAttribute("cart");
-
-Integer restaurantId=(Integer)session.getAttribute("oldRestaurantId");
-
-double grandTotal=0;
-double deliveryFee=40;
-double platformFee=5;
-
-if(cart!=null && !cart.getItems().isEmpty()){
-
-    for(CartItems item:cart.getItems().values()){
-        grandTotal+=item.getTotalPrice();
-    }
-
-    double finalAmount=grandTotal+deliveryFee+platformFee;
-
-%>
-
-<form action="checkout" method="post">
-
-<div class="checkout-wrapper">
-
-<div class="checkout-box">
-
-<h2 class="section-title">Delivery Details</h2>
-
-<div class="form-group">
-<label>Full Name</label>
-<input type="text"
-name="customerName"
-placeholder="Enter Your Name"
-required>
-</div>
-
-<div class="form-group">
-<label>Mobile Number</label>
-<input type="tel"
-name="mobileNumber"
-placeholder="Enter Mobile Number"
-pattern="[0-9]{10}"
-maxlength="10"
-required>
-</div>
-
-<div class="form-group">
-<label>Delivery Address</label>
-<textarea
-name="address"
-placeholder="Enter Complete Address"
-required></textarea>
-</div>
-
-<div class="form-group">
-<label>Payment Method</label>
-
-<select name="paymentMethod" required>
-
-<option value="">Select Payment Method</option>
-
-<option value="cash">
-Cash On Delivery 
-</option>
-
-<option value="upi">
-UPI
-</option>
-
-<option value="card">
-Credit Card
-</option>
-
-<option value="card">
-Debit Card
-</option>
-
-
-</select>
-
-</div>
-
-</div>
-
-<div class="summary-box">
-
-<h2 class="section-title">Order Summary</h2>
-
-<%
-
-for(CartItems item:cart.getItems().values()){
-
-%>
-
-<div class="summary-item">
-
-<div class="item-name">
-<%=item.getName()%>
-</div>
-
-<div class="item-qty">
-x <%=item.getQuantity()%>
-</div>
-
-<div class="item-total">
-₹ <%=item.getTotalPrice()%>
-</div>
-
-</div>
-
-<%
-}
-%>
-
-<div class="bill-details">
-
-<div class="bill-row">
-<span>Item Total</span>
-<span>₹ <%=grandTotal%></span>
-</div>
-
-<div class="bill-row">
-<span>Delivery Fee</span>
-<span>₹ <%=deliveryFee%></span>
-</div>
-
-<div class="bill-row">
-<span>Platform Fee</span>
-<span>₹ <%=platformFee%></span>
-</div>
-
-<div class="bill-row">
-<span>Total Amount</span>
-<span>₹ <%=finalAmount%></span>
-</div>
-
-</div>
-
-<%
-session.setAttribute("finalAmount",finalAmount);
-%>
-
-<input
-type="hidden"
-name="restaurantId"
-value="<%=restaurantId%>">
-
-<input
-type="hidden"
-name="totalAmount"
-value="<%=finalAmount%>">
-
-<button
-type="submit"
-class="place-order-btn">
-Place Order
-</button>
-
-<a
-href="cart.jsp"
-class="back-cart-btn">
-Back to Cart
-</a>
-
-</div>
-
-</div>
-
-</form>
-
-<%
-}
-else{
-%>
-
-<div class="empty-checkout">
-
-<h2>Your Cart is Empty</h2>
-
-<p>Please add food items before checkout.</p>
-
-<a
-href="restaurantServlet"
-class="browse-btn">
-Browse Restaurants
-</a>
-
-</div>
-
-<%
-}
-%>
-
-</body>
-</html> --%>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -446,6 +7,8 @@ Browse Restaurants
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" type="image/png"
+      href="${pageContext.request.contextPath}/assets/favicon.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Checkout — Flavora</title>
@@ -1020,7 +583,7 @@ if(cart != null && !cart.getItems().isEmpty()){
   double finalAmount = grandTotal + deliveryFee + platformFee;
 %>
 
-<form action="checkout" method="post">
+<form id="checkoutForm" action="checkout" method="post">
 <div class="checkout-wrapper">
 
   <!-- delivery form -->
@@ -1054,7 +617,7 @@ if(cart != null && !cart.getItems().isEmpty()){
     <div class="form-group">
       <label>Payment Method</label>
       <div class="input-wrap">
-        <select name="paymentMethod" required>
+        <select id="paymentMethod" name="paymentMethod" required>
           <option value="">Select Payment Method</option>
           <option value="cash">Cash On Delivery</option>
           <option value="upi">UPI</option>
@@ -1110,7 +673,7 @@ if(cart != null && !cart.getItems().isEmpty()){
     <input type="hidden" name="restaurantId" value="<%= restaurantId %>">
     <input type="hidden" name="totalAmount" value="<%= finalAmount %>">
 
-    <button type="submit" class="place-order-btn">Place Order</button>
+    <button type="submit" id="placeOrderBtn" class="place-order-btn">Place Order</button>
     <a href="cart.jsp" class="back-cart-btn"><span>← Back to Cart</span></a>
   </div>
 
@@ -1148,6 +711,8 @@ if(cart != null && !cart.getItems().isEmpty()){
     </div>
   </div>
 </footer>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <script>
 /* custom cursor */
@@ -1204,6 +769,110 @@ const observer3d = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.scroll-3d:not(.vis)').forEach(el => observer3d.observe(el));
+
+//Razorpay Payment
+// Razorpay Payment
+let paymentCompleted = false;
+
+document.getElementById("checkoutForm").addEventListener("submit", function(e){
+
+    if(paymentCompleted){
+        return;
+    }
+
+    let paymentMethod = document.getElementById("paymentMethod").value;
+
+    // Cash On Delivery -> submit normally
+    if(paymentMethod === "cash"){
+        return;
+    }
+
+    // Prevent normal form submit
+    e.preventDefault();
+
+    fetch("<%=request.getContextPath()%>/createOrder",{
+        method:"POST"
+    })
+    .then(response => response.json())
+    .then(order => {
+
+    console.log("Order Created");
+    console.log(order);
+
+    	var options = {
+
+    		    prefill:{
+
+    		        name: document.getElementsByName("customerName")[0].value,
+
+    		        contact: document.getElementsByName("mobileNumber")[0].value
+
+    		    },
+
+    		    key: "rzp_test_TAXpOrET0Dniuz",
+
+    		    amount: order.amount,
+
+    		    currency: order.currency,
+
+    		    name: "Flavora",
+
+    		    description: "Food Order",
+
+    		    order_id: order.id,
+
+    		    theme:{
+    		        color:"#E85D04"
+    		    },
+
+    		    modal:{
+    		        ondismiss:function(){
+    		            console.log("Checkout Closed");
+    		        }
+    		    },
+
+    		    handler:function(response){
+
+    		        console.log("Payment Success");
+    		        console.log(response);
+
+    		        let paymentId=document.createElement("input");
+    		        paymentId.type="hidden";
+    		        paymentId.name="razorpayPaymentId";
+    		        paymentId.value=response.razorpay_payment_id;
+    		        document.getElementById("checkoutForm").appendChild(paymentId);
+
+    		        let orderId=document.createElement("input");
+    		        orderId.type="hidden";
+    		        orderId.name="razorpayOrderId";
+    		        orderId.value=response.razorpay_order_id;
+    		        document.getElementById("checkoutForm").appendChild(orderId);
+
+    		        let signature=document.createElement("input");
+    		        signature.type="hidden";
+    		        signature.name="razorpaySignature";
+    		        signature.value=response.razorpay_signature;
+    		        document.getElementById("checkoutForm").appendChild(signature);
+
+    		        paymentCompleted = true;
+    		        document.getElementById("checkoutForm").submit();
+    		    }
+
+    		};
+
+        var rzp = new Razorpay(options);
+        rzp.on('payment.failed', function (response){
+
+            alert("Payment Failed!");
+
+            console.log(JSON.stringify(response.error, null, 2));
+
+        });
+        rzp.open();
+
+    });
+
+});
 </script>
 
 </body>

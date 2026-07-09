@@ -1,192 +1,7 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<%@ page import="java.util.List" %>
-<%@ page import="com.tap.DAOImple.copy.RestaurantDAOImple" %>
-<%@ page import="com.tap.model.Restaurant" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Restaurants</title>
-
-<style>
-
-body{
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-}
-
-/* Navbar */
-.nav{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-
-    background-color: darkorange;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-
-    padding: 10px 20px;
-    box-sizing: border-box;
-    z-index: 1000;
-}
-
-.nav .buttons .btnn{
-    background-color: white;
-    color: black;
-    text-decoration: none;
-
-    padding: 6px 12px;
-    margin-left: 8px;
-
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-
-.nav .buttons .btnn:hover{
-    background-color: #f0f0f0;
-}
-
-/* Restaurant Container */
-.container{
-    width: 90%;
-    margin: 80px auto 20px;
-
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 280px));
-    justify-content: center;
-    gap: 35px;
-}
-
-/* Restaurant Card */
-.card{
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    
-    width: 280px;
-    padding: 10px;
-
-    box-shadow: 0 2px 10px rgba(0,0,0,0.12);
-    transition: transform 0.3s ease;
-}
-
-.card:hover{
-    transform: translateY(-5px);
-}
-
-/* Restaurant Image */
-.card img{
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-/* Restaurant Name */
-.card h2{
-    margin: 10px 0 5px;
-    color: #ff6600;
-    font-size: 20px;
-}
-
-/* Restaurant Details */
-.card p{
-    margin: 5px 0;
-    font-size: 14px;
-    color: #555;
-}
-
-/* View Menu Button */
-.btn{
-    background-color: orange;
-    color: white;
-    text-decoration: none;
-
-    padding: 8px 16px;
-    border-radius: 5px;
-
-    display: inline-block;
-    margin-top: 10px;
-    font-size: 14px;
-}
-
-.btn:hover{
-    background-color: darkorange;
-}
-
-</style>
-
-</head>
-<body>
-
-<section>
-	<nav class="nav">
-		<div class= "buttons">
-			<a href="callOrderHistoryServlet" class="btnn">order history</a>
-			<a href="cart.jsp" class="btnn">Cart</a>
-			<a href="register.html"  class= btnn>signup</a>
-			<a href="login.html" class="btnn">login</a>
-		</div>
-	</nav>
-</section>
-
-<div class="container">
-<%
-List<Restaurant> restaurantList = (List<Restaurant>)request.getAttribute("restaurantList");
-
-if(restaurantList != null){
-    for(Restaurant r : restaurantList){
-%>
-
-<div class="card">
-	<img alt="" src="assets/<%= r.getImages()%>" class="restaurant-img">
-    <h2><%= r.getName() %></h2>
-    <p><strong>Cuisine:</strong> <%= r.getCuisineType() %></p>
-    <p><strong>Delivery Time:</strong> <%= r.getDeliveryTime() %> mins </p>
-    <p><strong>Address:</strong> <%= r.getAddress() %></p>
-    <p><strong>Rating:</strong> ⭐ <%= r.getRating() %></p>
-    <p><strong>isActive:</strong> <%= r.getIsActive() %></p>
-    <a href="callMenuServlet?restaurantId=<%= r.getRestaurantId() %>" class="btn">View Restaurant</a>
-</div>
-
-<%
-    }
-}
-%>
-
-</div>
-
-</body>
-</html>  --%>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 
 <%@ page import="java.util.List" %>
 <%@ page import="com.tap.DAOImple.copy.RestaurantDAOImple" %>
@@ -195,6 +10,8 @@ if(restaurantList != null){
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" type="image/png"
+      href="${pageContext.request.contextPath}/assets/favicon.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Restaurants — Flavora</title>
@@ -1338,7 +1155,7 @@ a { text-decoration: none; color: inherit; }
     <a href="cart.jsp"                class="btnn">Cart</a>
     <a href="register.html"           class="btnn">Sign Up</a>
     <a href="login.html"              class="btnn primary">Login</a>
-    <a href="admin/adminLogin.html"	  class="btnn primary">Admin Login</a>
+    <a href="admin/dashBoard.jsp"	  class="btnn primary">Admin DashBoard</a>
    	<%User user = (User)session.getAttribute("user");%>
    	<div class="btnn primary" onclick="toggleMenu()">
    		👤<%=user != null? user.getUserName():"User" %>

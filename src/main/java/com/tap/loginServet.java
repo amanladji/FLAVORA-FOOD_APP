@@ -37,6 +37,10 @@ public class loginServet extends HttpServlet{
 		
 		if(isValid) {
 			session.setAttribute("user", user);
+
+			System.out.println("LOGIN SUCCESS");
+			System.out.println("Session ID = " + session.getId());
+			System.out.println("Stored User = " + session.getAttribute("user"));
 			if(user.getRole().equals("admin")) {
 				resp.sendRedirect("admin/dashBoard.jsp");
 			}else {

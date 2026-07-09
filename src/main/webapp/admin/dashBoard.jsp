@@ -1,133 +1,3 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="com.tap.model.User" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Admin DashBoard</title>
-<style>
-	body{
-		background-color: #ffff;
-	}
-	
-	.container{
-		margin: 20px auto; 
-		background-color: white;
-		height: 1000px;
-		width: 1400px;
-		
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-direction: column;
-		border: 1px solid black;
-		border-radius: 5px;
-	}
-	
-	.header{
-		align-self: stretch;
-		text-align: center;
-		margin-top: 20px;
-		
-		
-		border-radius: 5px;
-		border: 1px solid black; 
-	}
-	.hero{
-		align-self: stretch;
-		text-align: center;
-		margin: auto;
-		height: 300px;
-		width: 1300px;
-		margin-top: 10px;
-		margin-bottom: auto;
-		display: flex;
-		align-items: center;
-		border-radius: 5px;
-		border: 1px solid black; 
-	}
-	.cards{
-		margin-top: 10px;
-		margin-bottom: 200px;;
-		height: 300px;
-		width: 1300px;
-		display: flex;
-		gap: 60px;
-		
-	}
-	
-	.cards div{
-		width: 500px;
-		height: auto;
-		border: 2px solid #333;
-		border-radius: 5px;
-		background-color: white;
-		
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-	
-	.cards div a{
-		display: block;
-		width: 100%;
-		text-decoration: none;
-		cursor: pointer;
-		font-size: 30px;
-		text-align: center;
-	}
-	
-</style>
-</head>
-<body>
-	<%User user = (User)session.getAttribute("user"); 
-	  if(user == null){
-		  response.sendRedirect("admin/adminLogin.html");
-		  return;
-	  }
-	  if(!"admin".equals(user.getRole())){
-		  response.sendRedirect("../login.html");
-		  return;
-	  }
-	
-	
-	
-	%>
-	<div class="container">
-		<div class= "header"><h1>Flavora Admin Panal</h1></div>
-		<div class="hero"><h2>Welcome, Admin 👋</h2></div>
-		<div class="cards">
-			<div><strong><a href="../callManageRestaurantServlet">🏪 Manage Restaurants and Menu</a></strong></div>
-			
-			<div><strong><a href="<%=request.getContextPath()%>/callLogoutServlet">🚪 Logout</a></strong></div>
-		</div>
-	</div>
-	
-	
-	
-</body>
-</html> --%>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -135,6 +5,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" type="image/png"
+      href="${pageContext.request.contextPath}/assets/favicon.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Dashboard — Flavora</title>
@@ -659,7 +531,7 @@ a { text-decoration: none; color: inherit; }
 <%
 User user = (User)session.getAttribute("user");
 if(user == null){
-    response.sendRedirect("adminLogin.html");
+    response.sendRedirect("adminLogin.jsp");
     return;
 }
 if(!"admin".equals(user.getRole())){
@@ -698,6 +570,7 @@ if(!"admin".equals(user.getRole())){
   <a href="../restaurantServlet"       class="btnn">Restaurants</a>
   <a href="dashBoard.jsp"              class="btnn primary">Dashboard</a>
   <a href="adminLogin.html"            class="btnn">Admin Login</a>
+  <a href="adminRegister.jsp"          class="btnn">Admin Register</a>
 </div>
 
 <!-- dashboard main -->

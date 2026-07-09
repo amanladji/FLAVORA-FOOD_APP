@@ -1,107 +1,3 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Order Confirmation</title>
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
-
-body{
-    background:#f5f5f5;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-}
-
-.container{
-    background:#fff;
-    padding:40px;
-    border-radius:10px;
-    text-align:center;
-    box-shadow:0 4px 12px rgba(0,0,0,0.15);
-    width:400px;
-}
-
-.success-icon{
-    font-size:60px;
-    color:#28a745;
-    margin-bottom:20px;
-}
-
-h2{
-    color:#333;
-    margin-bottom:10px;
-}
-
-p{
-    color:#666;
-    margin-bottom:25px;
-}
-
-.btn{
-    display:inline-block;
-    text-decoration:none;
-    background:#ff6b35;
-    color:#fff;
-    padding:12px 25px;
-    border-radius:6px;
-    transition:0.3s;
-}
-
-.btn:hover{
-    background:#e85b2d;
-}
-</style>
-
-</head>
-<body>
-
-<div class="container">
-
-    <div class="success-icon">✔</div>
-
-    <h2>Your Order has been Placed Successfully!</h2>
-
-    <p>Thank you for ordering with us.</p>
-
-    <a href="restaurantServlet" class="btn">Back to Restaurants</a>
-
-</div>
-
-</body>
-</html> --%>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -109,6 +5,8 @@ p{
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" type="image/png"
+      href="${pageContext.request.contextPath}/assets/favicon.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Order Confirmed — Flavora</title>
