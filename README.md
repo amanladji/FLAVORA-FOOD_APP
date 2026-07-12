@@ -130,8 +130,6 @@ FLAVORA-FOODAPP
 - Order History
 - Admin Dashboard
 
-*(Add screenshots here after uploading them.)*
-
 ---
 
 ## ⚙️ Environment Variables
