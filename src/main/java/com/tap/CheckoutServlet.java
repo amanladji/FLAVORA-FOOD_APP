@@ -2,9 +2,9 @@ package com.tap;
 
 import java.io.IOException;
 
-import com.tap.DAOImple.copy.OrderDAOImple;
-import com.tap.DAOImple.copy.OrderItemDAOImple;
 import com.tap.model.CartItems;
+import com.tap.DAOImple.OrderDAOImple;
+import com.tap.DAOImple.OrderItemDAOImple;
 import com.tap.model.Cart;
 import com.tap.model.Order;
 import com.tap.model.User;
@@ -33,7 +33,7 @@ public class CheckoutServlet extends HttpServlet{
 		double finalAmount = (Double)session.getAttribute("finalAmount");
 		
 		if(user == null) {
-			RequestDispatcher rd = req.getRequestDispatcher("login.html");
+			RequestDispatcher rd = req.getRequestDispatcher("login.jsp");
 			rd.forward(req, resp);
 			return;
 		}

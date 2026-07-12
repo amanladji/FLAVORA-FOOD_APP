@@ -1,6 +1,6 @@
 package com.tap.testing;
 
-import com.tap.DAOImple.copy.OrderItemDAOImple;
+import com.tap.DAOImple.OrderItemDAOImple;
 import com.tap.model.OrderItem;
 
 public class orderItemTest {

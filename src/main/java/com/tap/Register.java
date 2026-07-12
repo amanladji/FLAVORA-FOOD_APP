@@ -11,8 +11,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.annotation.WebServlet;
 
+import com.tap.DAOImple.UserDAOImple;
 import com.tap.model.User;
-import com.tap.DAOImple.copy.UserDAOImple;
 
 @WebServlet("/callRegister")
 public class Register extends HttpServlet{

@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import com.tap.DAOImple.copy.UserDAOImple;
 import com.tap.utility.DBConnection;
 
 import jakarta.servlet.ServletException;
@@ -18,6 +17,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import jakarta.servlet.RequestDispatcher;
+
+import com.tap.DAOImple.UserDAOImple;
 import com.tap.model.User;
 
 @WebServlet("/callLoginServlet")
@@ -32,8 +33,16 @@ public class loginServet extends HttpServlet{
 		UserDAOImple udao = new UserDAOImple();
 		User user = udao.getUserByUserName(userName);
 		
+		if(user == null) {
+			req.setAttribute("error", "Invalid userName or Password");
+			RequestDispatcher rd = req.getRequestDispatcher("/login.jsp");
+			rd.forward(req, resp);
+			return;
+		}
+		
 		String DBPassword = user.getPassword();
 		boolean isValid = BCrypt.checkpw(password, DBPassword);
+		
 		
 		if(isValid) {
 			session.setAttribute("user", user);
@@ -48,7 +57,7 @@ public class loginServet extends HttpServlet{
 			}
 			
 		}else {
-			RequestDispatcher rd = req.getRequestDispatcher("login.html");
+			RequestDispatcher rd = req.getRequestDispatcher("/login.jsp");
 			rd.forward(req, resp);
 			
 		}

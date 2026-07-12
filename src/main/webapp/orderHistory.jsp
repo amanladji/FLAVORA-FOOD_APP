@@ -480,7 +480,7 @@ tbody tr:last-child td { border-bottom: none; }
     <a href="callOrderHistoryServlet" class="btnn">Order History</a>
     <a href="cart.jsp"                class="btnn">Cart</a>
     <a href="register.html"           class="btnn">Sign Up</a>
-    <a href="login.html"              class="btnn primary">Login</a>
+    <a href="login.jsp"               class="btnn primary">Login</a>
   </div>
 </nav>
 

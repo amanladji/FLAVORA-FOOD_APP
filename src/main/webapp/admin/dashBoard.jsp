@@ -535,7 +535,7 @@ if(user == null){
     return;
 }
 if(!"admin".equals(user.getRole())){
-    response.sendRedirect("../login.html");
+    response.sendRedirect("../restaurantServlet");
     return;
 }
 %>

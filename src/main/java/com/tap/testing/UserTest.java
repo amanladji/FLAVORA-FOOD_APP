@@ -1,6 +1,6 @@
 package com.tap.testing;
 
-import com.tap.DAOImple.copy.UserDAOImple;
+import com.tap.DAOImple.UserDAOImple;
 import com.tap.model.User;
 
 public class UserTest {

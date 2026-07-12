@@ -3,7 +3,7 @@ package com.tap;
 import java.io.IOException;
 import java.util.List;
 
-import com.tap.DAOImple.copy.OrderDAOImple;
+import com.tap.DAOImple.OrderDAOImple;
 import com.tap.model.Order;
 import com.tap.model.User;
 
@@ -23,7 +23,7 @@ public class OrderHistorServlet extends HttpServlet{
 		User user = (User)session.getAttribute("user");
 	
 		if(user == null) {
-			RequestDispatcher rd = req.getRequestDispatcher("login.html");
+			RequestDispatcher rd = req.getRequestDispatcher("login.jsp");
 			rd.forward(req, resp);
 			return;
 		}

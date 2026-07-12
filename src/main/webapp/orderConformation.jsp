@@ -360,7 +360,7 @@ a { text-decoration: none; color: inherit; }
     <a href="callOrderHistoryServlet" class="btnn">Order History</a>
     <a href="cart.jsp"                class="btnn">Cart</a>
     <a href="register.html"           class="btnn">Sign Up</a>
-    <a href="login.html"              class="btnn primary">Login</a>
+    <a href="login.jsp"              class="btnn primary">Login</a>
   </div>
 </nav>
 
