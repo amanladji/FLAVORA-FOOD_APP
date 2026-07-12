@@ -204,8 +204,8 @@ The project is deployed using:
 
 **Masroor Ahmed Aman**
 
-- GitHub: https://github.com/your-github-username
-- LinkedIn: https://linkedin.com/in/your-linkedin-profile
+- GitHub: https://github.com/amanladji?tab=repositories
+- LinkedIn: https://www.linkedin.com/in/masroor-ahmed-aman/
 
 ---
 
