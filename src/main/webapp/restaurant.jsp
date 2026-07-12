@@ -712,7 +712,7 @@ a{text-decoration:none;color:inherit}
 ══════════════════════════════════════ -->
 <section class="vsec">
   <video autoplay muted loop playsinline>
-    <source src="https://cdn.pixabay.com/video/2019/07/06/24999-347024091_large.mp4" type="video/mp4">
+    <source source src="${pageContext.request.contextPath}/assets/videos/kitchen-bg.mp4" type="video/mp4">
   </video>
   <div class="vov"></div>
   <div class="vc af">
